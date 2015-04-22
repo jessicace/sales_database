@@ -1,5 +1,6 @@
 require 'rubygems' # Required to use gems.
 require 'pg'
+require './connection.rb'
 
 conn = PG.connect( dbname: 'sales' )
 #p conn # Optionally inspect your connection.
