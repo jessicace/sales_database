@@ -12,13 +12,17 @@ class Connection
   def to_s
     "Connected to #{@database_name.capitalize} database"
   end
+
+  def exec(query)
+    results = []
+    @stream.exec(query) do |result|
+      result.each { |row| results << row }
+    end
+    results
+  end
 end
 
-connection = Connection.new('sales')
-#connection.stream.exec("SELECT * FROM transactions") do |result|
-#  result.each do |row|
-#    p row
-#  end
-#end
+#connection = Connection.new('sales')
+#connection.exec("SELECT * FROM transactions")
 
-puts connection
+#puts connection
